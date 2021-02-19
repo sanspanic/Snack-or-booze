@@ -1,6 +1,11 @@
 nav {
   background-color: black;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.light nav {
+  background-color: white;
 }
 
 .nav-item {
@@ -13,6 +18,10 @@ nav a {
   text-decoration: none;
 }
 
+.light nav a {
+  color: rgb(77, 73, 73);
+}
+
 nav a.active {
   color: #f0f2f5;
   font-weight: bold;
@@ -20,13 +29,25 @@ nav a.active {
   box-sizing: border-box;
 }
 
+.light nav a.active {
+  color: rgb(77, 73, 73);
+}
+
 nav a.active:hover {
-  color: #f0f2f5 !important;
+  color: #f0f2f5;
+}
+
+.light nav a.active:hover {
+  color: black;
 }
 
 nav a:hover {
   text-decoration: none;
   color: #f0f2f5;
+}
+
+.light nav a:hover {
+  color: black;
 }
 
 nav a.active.navbar-brand {
@@ -36,4 +57,3 @@ nav a.active.navbar-brand {
 nav a:not(.navbar-brand):hover {
   font-weight: bold;
 }
-

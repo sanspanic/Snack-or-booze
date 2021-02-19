@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./FoodMenu.css";
 import {
@@ -10,11 +10,13 @@ import {
   ListGroupItem,
   Button,
 } from "reactstrap";
+import ThemeContext from "./ThemeContext";
 
 function FoodMenu({ items, type, title }) {
+  const { isChecked } = useContext(ThemeContext);
   return (
     <section className="col-md-8 col-lg-5">
-      <Card>
+      <Card className={isChecked ? "light" : "dark"}>
         <CardBody>
           <CardTitle className="font-weight-bold text-center">
             {title} Menu

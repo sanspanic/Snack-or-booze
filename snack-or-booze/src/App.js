@@ -9,6 +9,7 @@ import Menu from "./FoodMenu";
 import Snack from "./FoodItem";
 import AddItem from "./AddItem";
 import MissingPage from "./MissingPage";
+import ThemeProvider from "./ThemeProvider";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,32 +49,34 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
-        <main>
-          <Switch>
-            <Route exact path="/">
-              <Home snacks={snacks} drinks={drinks} />
-            </Route>
-            <Route exact path="/snacks">
-              <Menu type="snacks" items={snacks} title="Snacks" />
-            </Route>
-            <Route exact path="/drinks">
-              <Menu type="drinks" items={drinks} title="Drinks" />
-            </Route>
-            <Route path="/:type/new">
-              <AddItem addItem={addItem} />
-            </Route>
-            <Route path="/snacks/:id">
-              <Snack items={snacks} cantFind="/snacks" />
-            </Route>
-            <Route path="/drinks/:id">
-              <Snack items={drinks} cantFind="/drinks" />
-            </Route>
-            <Route>
-              <MissingPage />
-            </Route>
-          </Switch>
-        </main>
+        <ThemeProvider>
+          <NavBar />
+          <main>
+            <Switch>
+              <Route exact path="/">
+                <Home snacks={snacks} drinks={drinks} />
+              </Route>
+              <Route exact path="/snacks">
+                <Menu type="snacks" items={snacks} title="Snacks" />
+              </Route>
+              <Route exact path="/drinks">
+                <Menu type="drinks" items={drinks} title="Drinks" />
+              </Route>
+              <Route path="/:type/new">
+                <AddItem addItem={addItem} />
+              </Route>
+              <Route path="/snacks/:id">
+                <Snack type="snacks" items={snacks} cantFind="/snacks" />
+              </Route>
+              <Route path="/drinks/:id">
+                <Snack type="drinks" items={drinks} cantFind="/drinks" />
+              </Route>
+              <Route>
+                <MissingPage />
+              </Route>
+            </Switch>
+          </main>
+        </ThemeProvider>
       </BrowserRouter>
     </div>
   );

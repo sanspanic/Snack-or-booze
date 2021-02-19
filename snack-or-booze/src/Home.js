@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
+import ThemeContext from "./ThemeContext";
 
 function Home({ snacks, drinks }) {
+  const { isChecked } = useContext(ThemeContext);
   return (
     <section className="col-md-8">
-      <Card>
+      <Card className={isChecked ? "light" : "dark"}>
         <CardBody className="text-center">
           <CardTitle>
             <h3 className="font-weight-bold">

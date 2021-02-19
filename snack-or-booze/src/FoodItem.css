@@ -1,0 +1,12 @@
+.FoodItem-btn {
+  margin: 1rem;
+  align-self: flex-start;
+}
+
+.FoodItem-btn a {
+  color: white;
+}
+
+.light .FoodItem-btn a {
+  color: black;
+}

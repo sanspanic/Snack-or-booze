@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import "./AddItem.css";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-} from "reactstrap";
+import { Col, Form, FormGroup, Label, Input } from "reactstrap";
+import ThemeContext from "./ThemeContext";
 
 const AddItem = ({ addItem }) => {
   const initialState = { name: "", serve: "", description: "", recipe: "" };
   const [formData, setFormData] = useState(initialState);
   const history = useHistory();
   const { type } = useParams();
+  const { isChecked } = useContext(ThemeContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +32,7 @@ const AddItem = ({ addItem }) => {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="AddItem-card"
+      className={isChecked ? "light AddItem-card" : "dark AddItem-card"}
       style={{ padding: "2rem" }}
     >
       <h1>Add New {title}</h1>
