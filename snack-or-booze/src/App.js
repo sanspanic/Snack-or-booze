@@ -7,10 +7,13 @@ import NavBar from "./NavBar";
 import { Route, Switch } from "react-router-dom";
 import Menu from "./FoodMenu";
 import Snack from "./FoodItem";
+import AddItem from "./AddItem";
+import MissingPage from "./MissingPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
     async function getSnacks() {
@@ -21,8 +24,25 @@ function App() {
     getSnacks();
   }, []);
 
+  useEffect(() => {
+    async function getDrinks() {
+      let drinks = await SnackOrBoozeApi.getDrinks();
+      setDrinks(drinks);
+      setIsLoading(false);
+    }
+    getDrinks();
+  }, []);
+
+  const addItem = (formData, type) => {
+    if (type === "snacks") {
+      setSnacks((snacks) => [...snacks, { ...formData, id: formData.name }]);
+    } else {
+      setDrinks((drinks) => [...drinks, { ...formData, id: formData.name }]);
+    }
+  };
+
   if (isLoading) {
-    return <p>Loading &hellip;</p>;
+    return <p className="App-loading">Loading &hellip;</p>;
   }
 
   return (
@@ -32,16 +52,25 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/">
-              <Home snacks={snacks} />
+              <Home snacks={snacks} drinks={drinks} />
             </Route>
             <Route exact path="/snacks">
-              <Menu snacks={snacks} title="Snacks" />
+              <Menu type="snacks" items={snacks} title="Snacks" />
+            </Route>
+            <Route exact path="/drinks">
+              <Menu type="drinks" items={drinks} title="Drinks" />
+            </Route>
+            <Route path="/:type/new">
+              <AddItem addItem={addItem} />
             </Route>
             <Route path="/snacks/:id">
               <Snack items={snacks} cantFind="/snacks" />
             </Route>
+            <Route path="/drinks/:id">
+              <Snack items={drinks} cantFind="/drinks" />
+            </Route>
             <Route>
-              <p>Hmmm. I can't seem to find what you want.</p>
+              <MissingPage />
             </Route>
           </Switch>
         </main>

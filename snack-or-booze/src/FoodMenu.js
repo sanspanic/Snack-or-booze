@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./FoodMenu.css";
 import {
@@ -7,28 +7,31 @@ import {
   CardTitle,
   CardText,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  Button,
 } from "reactstrap";
 
-function FoodMenu({ snacks }) {
+function FoodMenu({ items, type, title }) {
   return (
-    <section className="col-md-4">
+    <section className="col-md-8 col-lg-5">
       <Card>
         <CardBody>
           <CardTitle className="font-weight-bold text-center">
-            Food Menu
+            {title} Menu
           </CardTitle>
           <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Pick the item you desire from the list below. Tasty {type}, yum!
           </CardText>
           <ListGroup>
-            {snacks.map(snack => (
-              <Link to={`/snacks/${snack.id}`} key={snack.id}>
-                <ListGroupItem>{snack.name}</ListGroupItem>
+            {items.map((item) => (
+              <Link to={`/${type}/${item.id}`} key={item.id}>
+                <ListGroupItem>{item.name}</ListGroupItem>
               </Link>
             ))}
           </ListGroup>
+          <Button className="FoodMenu-btn" outline color="secondary">
+            <Link to={`/${type}/new`}>Add New Item</Link>
+          </Button>
         </CardBody>
       </Card>
     </section>
