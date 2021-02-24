@@ -10,11 +10,11 @@ function Home({ snacks, drinks }) {
         <CardBody className="text-center">
           <CardTitle>
             <h3 className="font-weight-bold">
-              Welcome to Silicon Valley's premier dive cafe!
+              Welcome to Silicon Valley's Premier Dive Cafe!
             </h3>
           </CardTitle>
           <p>
-            Choose form {snacks.length} food and {drinks.length} drinks options.
+            Choose from {snacks.length} food or {drinks.length} drinks options.
           </p>
         </CardBody>
       </Card>

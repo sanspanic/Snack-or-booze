@@ -43,7 +43,7 @@ function App() {
   };
 
   if (isLoading) {
-    return <p className="App-loading">Loading &hellip;</p>;
+    return <p className=" pp-loading">Loading &hellip;</p>;
   }
 
   return (

@@ -18,3 +18,7 @@ main {
 .App-loading {
   color: white;
 }
+
+.light.App-loading {
+  color: black;
+}
